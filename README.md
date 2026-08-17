@@ -68,6 +68,9 @@ dsh-vision-solution/
 ├── README.md                  # 本文档
 ├── LICENSE                    # MIT
 ├── install.ps1                # 一键安装脚本
+├── package.json               # DSH 插件 manifest（dsh.bundle，可 `dsh plugin add` 安装）
+├── cordis.patch.yml           # bundle 挂载补丁（注册两个技能）
+├── lib/index.js               # 插件 host 半边（ctx.skills.register 注册技能）
 ├── skills/
 │   ├── ds-vision-skill/       # 识图技能（来自 Sorwcyra/ds-vision-skill）
 │   │   ├── SKILL.md           #   技能定义
@@ -89,7 +92,18 @@ dsh-vision-solution/
 
 ## 快速安装
 
-### 方式一：一键脚本（推荐）
+### 方式一：作为 DSH 插件安装（dsh.bundle）
+
+本仓库声明了 `dsh.bundle` manifest，可用 `dsh plugin add` 从 GitHub 安装：
+
+```bash
+dsh plugin add https://github.com/br1nosense/dsh-vision-solution
+```
+
+安装后重启 `dsh web`，`ds-vision-skill` 与 `vision-patch` 两个技能即注册到技能系统；
+宿主补丁仍需在「图片被拒」时执行一次 `vision-patch`（或手动跑 `patch-vision.js`）。
+
+### 方式二：一键脚本（推荐）
 
 ```powershell
 # 在本仓库根目录执行
@@ -101,7 +115,7 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\install.ps1
 2. 自动执行 `patch-vision.js` 修补 DSH 宿主；
 3. 打印后续配置指引。
 
-### 方式二：手动
+### 方式三：手动
 
 ```powershell
 # 1. 复制技能目录

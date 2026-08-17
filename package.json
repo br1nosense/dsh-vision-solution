@@ -1,0 +1,33 @@
+{
+  "name": "@dsh-user/dsh-vision-solution",
+  "version": "0.1.0",
+  "description": "DSH 视觉增强方案：识图技能（图片理解/OCR/文档解析）+ 幂等宿主补丁，让纯文本模型也能收发图片。",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": {
+      "default": "./lib/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "files": [
+    "lib/index.js",
+    "cordis.patch.yml",
+    "skills/",
+    "README.md",
+    "install.ps1"
+  ],
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness",
+    "vision",
+    "ocr",
+    "skill"
+  ],
+  "license": "MIT"
+}

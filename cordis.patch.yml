@@ -1,0 +1,14 @@
+# @dsh-user/dsh-vision-solution bundle patch
+#
+# 挂载视觉增强方案：
+#   - 注册 `ds-vision-skill` 技能（图片理解/OCR/文档解析的统一路由）
+#   - 注册 `vision-patch` 技能（幂等宿主补丁：纯文本模型可收图片）
+#
+# 在 dsh-base 之后、用户 cordis.patch.yml 之前应用；需要 skills 服务。
+
+- insert:
+    - id: dsh-vision
+      name: '@dsh-user/dsh-vision-solution'
+      inject:
+        - skills
+      config: {}
